@@ -5,11 +5,6 @@ import { getFileByExternalId } from '@/services/fileService'
 import { FileKey } from 'lucide-react'
 
 export default function UploadPage() {
-    const clientId= process.env.GOOGLE_CLIENT_ID
-    if (!clientId) return <div>No Google Client Id found</div>
-  
-    const developerKey= process.env.GOOGLE_DRIVE_API_KEY
-    if (!developerKey) return <div>No Google Developer Key found</div>
   
     async function onUploadComplete(res: any) {
     "use server"

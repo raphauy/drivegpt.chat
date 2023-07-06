@@ -9,12 +9,6 @@ import { Button } from "@/components/ui/button";
 
 export default async function DataPage() {
 
-  const clientId= process.env.GOOGLE_CLIENT_ID
-  if (!clientId) return <div>No Google Client Id found</div>
-
-  const developerKey= process.env.GOOGLE_DRIVE_API_KEY
-  if (!developerKey) return <div>No Google Developer Key found</div>
-
   async function onUploadComplete() {
   "use server"
 

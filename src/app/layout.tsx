@@ -12,8 +12,8 @@ import { Navbar } from '../components/navbar/navbar'
 
 
 export const metadata: Metadata = {
-  title: "Drive ChatGPT",
-  description: "Google Drive ChatGPT service by Raphael Carvalho",
+  title: "DriveGPT App",
+  description: "Drive ChatGPT through your own data!",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },

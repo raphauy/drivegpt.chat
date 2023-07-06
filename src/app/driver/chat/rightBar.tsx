@@ -16,7 +16,7 @@ export default async function RightBar() {
           <Files size={23} />
           <p className="text-xl font-bold">{files.length} Archivos:</p>
         </div>
-        {files.length === 0 && <Button variant="outline"><Link href="/driver/files">Cargar</Link></Button>} 
+        {files.length === 0 && <Button variant="outline"><Link href="/driver/upload">Cargar</Link></Button>} 
         <div className="flex flex-col items-start">
           {
             files.map(file => {

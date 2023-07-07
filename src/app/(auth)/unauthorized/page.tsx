@@ -14,7 +14,7 @@ export default async function NotAlowedPage({ message }: Props) {
   return (
     <>
       <section className="flex justify-center">
-        <div className="flex flex-col items-center w-1/2 p-4 mt-10 bg-gray-200 border border-gray-300 rounded-xl">
+        <div className="flex flex-col items-center p-4 mt-10 bg-gray-200 border border-gray-300 md:w-1/2 rounded-xl">
           <p className="mt-10 text-3xl font-bold">Not authorized</p>
           <p className="mt-3 text-xl">{message}</p>
           {

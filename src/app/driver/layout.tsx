@@ -21,10 +21,10 @@ export default async function AdminLayout({ children }: Props) {
 
   return (
     <>
-      <main className="flex flex-grow">
+      <div className="flex flex-grow">
         <SideBar />
         <div className="flex flex-col items-center flex-grow">{children}</div>
-      </main>
+      </div>
     </>
   )
 }

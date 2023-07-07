@@ -38,7 +38,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <AuthContext>
 
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <div className="container relative flex flex-col min-h-screen text-muted-foreground">
+              <div className="relative flex flex-col min-h-screen md:container text-muted-foreground">
                 <Navbar />
                 
                 <div className="flex flex-col flex-1 dark:text-white text-muted-foreground">

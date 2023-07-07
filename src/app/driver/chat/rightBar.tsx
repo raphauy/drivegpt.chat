@@ -10,7 +10,7 @@ export default async function RightBar() {
 
   return (
     <>
-      <section className="flex flex-col px-2 border-l border-r-tinta-vino/50">
+      <section className="flex-col hidden px-2 border-l lg:flex border-r-tinta-vino/50">
 
         <div className="flex items-center gap-1 py-2">
           <Files size={23} />

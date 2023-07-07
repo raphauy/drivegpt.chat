@@ -18,7 +18,7 @@ Technologies Used:
 - Backend Development: Node.js with Langchain and Supabase integration for embedding and vector database operations.
 - Embedding and Vector Database: Leveraging advanced techniques to handle data representation and retrieval efficiently.
 
-For more information and to see a live demo of the Embedding-based Customized Chat Platform, please visit our website at drivegpt.chat. We are in alpha phase, request access to test rapha.uy@rapha.uy
+For more information and to see a live demo of the Embedding-based Customized Chat Platform, please visit our website at [drivegpt.chat](https://drivegpt.chat). We are in alpha phase, request access to test rapha.uy@rapha.uy
 
 I appreciate your interest and look forward to your contributions to this exciting project!
 

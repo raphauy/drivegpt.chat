@@ -2,7 +2,7 @@
 
 import { LoadingSvg } from '@/components/loadingSpinner'
 import { useChat } from 'ai/react'
-import { Bot, User } from 'lucide-react'
+import { Bot, Send, User } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 
@@ -44,14 +44,15 @@ export default function Chat() {
 
       </div>
 
-      <form onSubmit={handleSubmit} className='w-full'>
+      <form onSubmit={handleSubmit} className='flex items-center w-full p-4 border border-gray-300 rounded-md shadow '>
         <input
-          className="w-full p-2 border border-gray-300 rounded shadow "
+          className="w-full bg-transparent focus:outline-none"
           value={input}
           placeholder="Pregunta lo que quieras :-)"
           onChange={handleInputChange}
           disabled={loading}
         />
+        <button><Send /></button>
       </form>
     </div>
 )

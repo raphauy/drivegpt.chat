@@ -110,9 +110,11 @@ export const columns: ColumnDef<File>[] = [
           <Link href={`/driver/repository/delete?fileId=${file.id}`} className="flex items-center">
               <Trash2 className="text-red-400"/>
           </Link>
+          {/**
           <Link href={`/driver/repository/sections?fileId=${file.id}`} className="flex items-center">
               <FileSearch/>
           </Link>
+           */}
         </div>
       )
     },

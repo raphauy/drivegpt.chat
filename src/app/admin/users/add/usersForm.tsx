@@ -11,8 +11,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Input } from "@/components/ui/input"
 import { User } from "@prisma/client"
 import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { toast } from "react-hot-toast"
+import { experimental_useFormStatus } from "react-dom"
+import { LoadingSpinnerChico } from "@/components/loadingSpinner"
 
 export const roles= [
   "user",
@@ -44,10 +46,12 @@ export function UserForm({ user, processData }: Props) {
     mode: "onChange",
   })
   const router= useRouter()
+  const [loading, setLoading] = useState(false)
 
   async function onSubmit(data: UserFormValues) {
-    
+    setLoading(true)
     const fresh= await processData(data)
+    setLoading(false)
 
     let message= "User created 🏁"
     if (user)
@@ -55,7 +59,7 @@ export function UserForm({ user, processData }: Props) {
       
     toast.success(message, { duration: 4000 })
 
-    fresh && router.push(`/admin/users?refresh=${new Date().getMilliseconds()}`)
+    fresh && router.push("/admin/users")
   }
 
   useEffect(() => {
@@ -128,7 +132,7 @@ export function UserForm({ user, processData }: Props) {
         />
         <div className="flex justify-end">
           <Button onClick={() => history.back()} type="button" variant={"secondary"} className="w-32">Cancel</Button>
-          <Button type="submit" className="w-32 ml-2" >Save</Button>
+          <Button type="submit" className="w-32 ml-2" >{loading ? <LoadingSpinnerChico /> : <p>Save</p>}</Button>
         </div>
       </form>
     </Form>

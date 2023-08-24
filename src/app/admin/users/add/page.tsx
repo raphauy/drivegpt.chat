@@ -22,7 +22,7 @@ export default async function AddWinePage({ searchParams }: Props) {
 
     console.log(created);
     
-    revalidatePath("/admin")
+    revalidatePath("/admin/users")
     
     return created
     }

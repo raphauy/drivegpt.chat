@@ -1,29 +1,38 @@
 "use client"
 
+import { LoadingSpinnerChico } from "@/components/loadingSpinner";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import { File } from "@prisma/client";
+import { ServerResult } from "@/types/common";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+
 
 interface Props {
-  eliminate: () => Promise<File | null>;
+  eliminate: () => Promise<ServerResult>;
 }
 
 export default function DeleteForm({ eliminate }: Props) {
   const router= useRouter()
+  const [loading, setLoading] = useState(false)
+
 
   async function handleClick() {
-    await eliminate()
+    setLoading(true)
+    const result= await eliminate()
+    setLoading(false)
 
-    toast({
-      description: (
-        <pre className="p-4 mt-2 rounded-md bg-slate-950">
-          <p className="text-xl text-white">Archivo eliminado</p>
-        </pre>
-      ),
-    })
+    if (result.success) {
+      toast({title: "Archivo eliminado"})  
+    } else {
+      toast({
+        title: "Error al eliminar",
+        variant: "destructive",
+        description: result.error
+      })
+    }
 
-    router.push(`/driver/repository?refresh=${new Date().getMilliseconds()}`)
+    router.push("/driver/repository")
   }
   
   return (
@@ -37,7 +46,11 @@ export default function DeleteForm({ eliminate }: Props) {
         Cancelar
       </Button>
       <Button onClick={handleClick} variant="destructive" className="w-32 ml-2">
-        Eliminar
+        {
+          loading ? 
+          <LoadingSpinnerChico /> :
+          <p>Eliminar</p>
+        }
       </Button>
     </div>
   )

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  drive-gpt:
+    container_name: drive-gpt
+    image: raphauy/drive-gpt:latest
+    restart: always
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8059:3000
+    networks:
+      - rc-network
+
+networks:
+  rc-network:
+    external:
+      name: rc-network

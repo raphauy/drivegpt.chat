@@ -1,9 +1,11 @@
 "use client"
 
+import { LoadingSpinnerChico } from "@/components/loadingSpinner";
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
 import { User } from "@prisma/client"
 import { redirect, useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface Props {
   eliminate: () => Promise<User | null>;
@@ -11,9 +13,12 @@ interface Props {
 
 export default function DeleteForm({ eliminate }: Props) {
   const router= useRouter()
+  const [loading, setLoading] = useState(false)
 
   async function handleClick() {
+    setLoading(true)
     await eliminate()
+    setLoading(false)
 
     toast({
       description: (
@@ -23,7 +28,7 @@ export default function DeleteForm({ eliminate }: Props) {
       ),
     })
 
-    router.push(`/admin/users?refresh=${new Date().getMilliseconds()}`)
+    router.push("/admin/users")
   }
   
   return (
@@ -37,7 +42,11 @@ export default function DeleteForm({ eliminate }: Props) {
         Cancel
       </Button>
       <Button onClick={handleClick} variant="destructive" className="w-32 ml-2">
-        Delete
+      {
+          loading ? 
+          <LoadingSpinnerChico /> :
+          <p>Delete</p>
+        }
       </Button>
     </div>
   )

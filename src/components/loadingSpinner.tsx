@@ -11,7 +11,7 @@ export default function LoadingSpinner() {
 export function LoadingSpinnerChico() {
   return (
     <div className="flex items-center justify-center w-full h-full p-5">
-      <div className="w-5 h-5 border-t-2 border-b-2 rounded-full border-first-color"></div>
+      <div className="w-5 h-5 border-t-2 border-b-2 rounded-full border-first-color animate-spin"></div>
     </div>
   )
 }

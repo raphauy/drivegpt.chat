@@ -3,6 +3,7 @@ import { revalidatePath } from 'next/cache'
 import DeleteForm from './deleteForm'
 import { deleteFile, getFile } from '@/services/fileService'
 import { File } from '@prisma/client'
+import { ServerResult } from '@/types/common'
 
 interface Props{
     searchParams: {
@@ -17,14 +18,20 @@ export default async function DeletePage({ searchParams }: Props) {
    
     if (!file) <div>File not found</div>
 
-    async function eliminate(): Promise<File | null> {
+    async function eliminate(): Promise<ServerResult> {
         "use server"
         
-        const deleted= file && await deleteFile(file.id)
+        if (!file) {
+            return { success: false, error: "File is null or undefined" };
+        }
 
-        revalidatePath("/driver/repository")
+        console.log("eliminate(), file.id: " + file.id);
 
-        return deleted
+        const result= await deleteFile(file.id)
+        if (result?.success) {
+            revalidatePath("/driver/repository")
+        }
+        return result
     }
     
     return (

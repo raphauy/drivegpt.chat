@@ -1,9 +1,9 @@
-import { utapi } from "uploadthing/server";
 import { prisma } from "@/utils/server/db"
 import { getCurrentUser } from "./session"
 import { deleteFileOnFileSystem, saveFile } from "./fileStorageService"
 import { embedPDF } from "./vectorDBService"
 import { deleteSections } from "./supabase"
+import { ServerResult } from "@/types/common";
 
 interface FileType{
     name: string
@@ -110,14 +110,25 @@ export async function editFile(id: string, data: FileType) {
   return created
 }
 
-export async function deleteFile(id: string) {
-  
-  const deleted= await prisma.file.delete({
-    where: {
-      id
-    },
-  })
-  await deleteSections(deleted.externalId)
-
-  return deleted
+export async function deleteFile(id: string): Promise<ServerResult> {
+  try {
+      const deleted = await prisma.file.delete({
+          where: {
+              id
+          },
+      })
+      if (deleted) {
+        await deleteSections(deleted.externalId)
+        return { success: true, successData: deleted.id }
+      } else {
+        return { success: false, error: 'An unknown error occurred' }
+      }
+    } catch (error) {
+      console.error(error)
+      if (error instanceof Error) {
+        return { success: false, error: error.message }
+    } else {
+        return { success: false, error: 'An unknown error occurred' }
+    }
+  }
 }

@@ -25,7 +25,8 @@ export async function getUser(id: string) {
 }
 
 export async function createUser(data: UserFormValues) {
-  
+  await new Promise(resolve => setTimeout(resolve, 3000))
+
   const created= await prisma.user.create({
     data
   })
@@ -47,7 +48,8 @@ export async function editUser(id: string, data: UserFormValues) {
 }
 
 export async function deleteUser(id: string) {
-  
+  await new Promise(resolve => setTimeout(resolve, 3000))
+
   const deleted= await prisma.user.delete({
     where: {
       id
